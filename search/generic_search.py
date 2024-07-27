@@ -56,7 +56,7 @@ def astar(initial, goal_test, successors, heuristic):
         # 如果行动节点即目标节点，则搜索结束
         if goal_test(current_state):
             return current_node
-        # 否则继续探索未访问区域
+        # 否则继续探索邻近区域
         for child in successors(current_state):
             new_cost = current_node.cost + 1
             if child not in explored or explored[child] > new_cost:

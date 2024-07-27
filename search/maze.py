@@ -47,6 +47,7 @@ class Maze:
     def goal_test(self, ml: MazeLocation) -> bool:
         return self.goal == ml
 
+    # 检查当前位置的四个可能的移动方向：上、下、左、右
     def successors(self, ml: MazeLocation) -> List[MazeLocation]:
         locations: List[MazeLocation] = []
         if ml.row + 1 < self._rows and self._grid[ml.row + 1][ml.column] != Cell.BLOCKED:
@@ -77,7 +78,7 @@ def manhattan_distance(goal: MazeLocation) -> Callable[[MazeLocation], float]:
 
 if __name__ == '__main__':
     m = Maze()
-    distance = manhattan_distance(m.goal)
+    distance: Callable = manhattan_distance(m.goal)
     solution = astar(m.start, m.goal_test, m.successors, distance)
     if solution is None:
         print("No solution found using A*!")
